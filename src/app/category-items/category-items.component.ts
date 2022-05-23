@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
-import { ItemObject } from '../model';
 
 @Component({
   selector: 'app-category-items',
@@ -10,7 +9,7 @@ export class CategoryItemsComponent implements OnInit {
 
   @Output() itemSelect = new EventEmitter();
   @Input() category !: String;
-  @Input() items !: ItemObject[];
+  @Input() items !: any[];
 
   activeState = false;
 
@@ -20,7 +19,7 @@ export class CategoryItemsComponent implements OnInit {
   }
 
   // Triggered on click
-  displayItem(item: ItemObject){
+  displayItem(item: any){
     this.itemSelect.emit(item);
     this.toggleState();
   }

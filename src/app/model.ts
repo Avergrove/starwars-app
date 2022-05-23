@@ -1,146 +1,177 @@
-export class MetaObject {
-    count !: string;
-    next !: string;
-    previous !: string;
+export interface PeopleMeta {
+    count: string;
+    next: string;
+    previous: string;
+    results: People[];
 }
 
-export class ItemObject {
-    category !: String;
-    name !: String;
-    created !: string[];
-    edited !: string[];
-    url !: string;
+export interface People {
+    category: "people";
+    name: string;
+    height: string;
+    mass: number;
+    hair_color: string;
+    skin_color: string;
+    birth_year: string;
+    gender: string;
 
+    homeworld: string; // Url
+    films: string[];   // Url
+    species: string[]; // Url
+    vehicles: string[];
+    starships: string[];
+
+    created: string[];
+    edited: string[];
+
+    url: string;
 }
 
-export class PeopleMeta extends MetaObject{
-    results !: People[];
-}
 
 
-export class People extends ItemObject{
-    override category = "people";
-    height!: string;
-    mass!: number;
-    hair_color!: string;
-    skin_color!: string;
-    birth_year!: string;
-    gender!: string;
-
-    homeworld!: string; 
-    films!: string[];   
-    species!: string[]; 
-    vehicles!: string[];
-    starships!: string[];
-}
-
-export interface FilmMeta extends MetaObject {
+export interface FilmMeta {
+    count: string;
+    next: string;
+    previous: string;
     results: Film[];
 }
 
-export class Film extends ItemObject {
-    override category = "film";
+export interface Film {
+    category: "film";
     
-    title!: string;
-    override name = this.title;
-    episode_id!: string;
-    opening_crawl!: string;
-    director!: string;
-    producer!: string;
-    release_date!: string;
+    title: string;
+    episode_id: string;
+    opening_crawl: string;
+    director: string;
+    producer: string;
+    release_date: string;
 
-    characters!: string[];
-    planets!: string[];
-    starships!: string[];
-    vehicles!: string[];
-    species!: string[];
-}
-
-
-
-export class SpeciesMeta extends MetaObject {
-    results !: Species[];
-}
-
-export class Species extends ItemObject {
-    override category = "species";
+    characters: string[];
+    planets: string[];
+    starships: string[];
+    vehicles: string[];
+    species: string[];
     
-    classification!: string;
-    designation!: string;
-    average_height!: string;
-    skin_colors!: string;
-    hair_colors!: string;
-    eye_colors!: string;
-    average_lifespan!: string;
-    homeworld!: string;
-    language!: string;
-
-    people!: string[];
-    films!: string[];
+    created: string;
+    edited: string;
+    url: string;
 }
 
-export class StarshipMeta extends MetaObject {
-    results!: Starship[];
+
+
+export interface SpeciesMeta {
+    count: string;
+    next: string;
+    previous: string;
+    results: Species[];
 }
 
-export class Starship extends ItemObject{
-    override category = "starship";
+export interface Species {
+    category: "species";
     
-    model!: string;
-    manufacturer!: string;
-    cost_in_credits!: string;
-    length!: string;
-    max_atmosphering_speed!: string;
-    crew!: string;
-    passengers!: string;
-    cargo_capacity!: string;
-    consumables!: string;
-    hyperdrive_rating!: string;
-    MGLT !: string;
-    starship_class!: string;
-    
-    pilots!: string[];
-    films!: string[];
+    name: string;
+    classification: string;
+    designation: string;
+    average_height: string;
+    skin_colors: string;
+    hair_colors: string;
+    eye_colors: string;
+    average_lifespan: string;
+    homeworld: string;
+    language: string;
+
+    people: string[];
+    films: string[];
+
+    created: string;
+    edited: string;
+    url: string;
 }
 
-export class VehicleMeta extends MetaObject{
-    results!: Vehicle[];
+export interface StarshipMeta {
+    count: string;
+    next: string;
+    previous: string;
+    results: Starship[];
 }
 
-export class Vehicle extends ItemObject{
-    override category = "vehicle";
+export interface Starship{
+    category: "starship";
     
-    model!: string;
-    manufacturer!: string;
-    cost_in_credits!: string;
-    length!: string;
-    max_atmosphering_speed!: string;
-    crew!: string;
-    passengers!: string;
-    cargo_capacity!: string;
-    consumables!: string;
-    vehicle_class!: string;
+    name: string;
+    model: string;
+    manufacturer: string;
+    cost_in_credits: string;
+    length: string;
+    max_atmosphering_speed: string;
+    crew: string;
+    passengers: string;
+    cargo_capacity: string;
+    consumables: string;
+    hyperdrive_rating: string;
+    MGLT: string;
+    starship_class: string;
+    
+    pilots: string[];
+    films: string[];
 
-    
-    pilots!: string[];
-    films!: string[];
+    created: string;
+    edited: string;
+    url: string;
 }
 
-export class PlanetMeta extends MetaObject{
-    results!: Planet[];
+export interface VehicleMeta {
+    count: string;
+    next: string;
+    previous: string;
+    results: Vehicle[];
 }
 
-export class Planet extends ItemObject{
-    override category = "planet";
+export interface Vehicle{
+    category: "vehicle";
     
-    rotation_period!: string;
-    orbital_period!: string;
-    diameter!: string;
-    climate!: string;
-    gravity!: string;
-    terrain!: string;
-    surface_water!: string;
-    population!: string;
-    residents!: string[];
-    films!: string[];
+    name: string;
+    model: string;
+    manufacturer: string;
+    cost_in_credits: string;
+    length: string;
+    max_atmosphering_speed: string;
+    crew: string;
+    passengers: string;
+    cargo_capacity: string;
+    consumables: string;
+    vehicle_class: string;
+
+    
+    pilots: string[];
+    films: string[];
+    created: string;
+    edited: string;
+    url: string;
+}
+
+export interface PlanetMeta{
+    count: string;
+    next: string;
+    previous: string;
+    results: Planet[];
+}
+
+export interface Planet{
+    category: "planet";
+    
+    name: string;
+    rotation_period: string;
+    orbital_period: string;
+    diameter: string;
+    climate: string;
+    gravity: string;
+    terrain: string;
+    surface_water: string;
+    population: string;
+    residents: string[];
+    films: string[];
+    created: string;
+    edited: string;
+    url: string;
 }

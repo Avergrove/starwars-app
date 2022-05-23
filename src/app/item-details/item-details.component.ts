@@ -1,40 +1,28 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Film, ItemObject, People, Planet, Species, Starship, Vehicle } from '../model';
+import { Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
+import { Film, People, Planet, Species, Starship, Vehicle } from '../model';
 
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.css']
 })
-export class ItemDetailsComponent implements OnInit {
+export class ItemDetailsComponent implements OnInit, OnChanges {
 
-  @Input() item !: ItemObject;
-
-  people = this.item as People;
-  film = this.item as Film;
-  species = this.item as Species;
-  starship = this.item as Starship;
-  vehicle = this.item as Vehicle;
-  planet = this.item as Planet;
-
+  @Input() item !: any;
 
   imageUrl !: String;
   activeState = false;
   debug !: string;
 
-  tweetText = encodeURI("https://avergrove.github.io/gdipsa-starwars-sa46/");
-
-
+  tweetText = encodeURI("https://avergrove.github.io/starwars-app/");
 
   constructor() { }
 
-  ngOnInit() {
-  }
 
-  ngOnChanges(changes: { previousValue: string; }) {
-    this.debug = changes.previousValue;
-    var itemId = this.item.url.match('^.*/([0-9]*)/$')![1];
-
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("changes: " + changes);
+    var itemId = this.item.url.match('^.*/([0-9]*)/$')![1]; 
+    console.log("The item id is: " + itemId);
     switch (this.item.category) {
       case 'people':
         this.imageUrl = "https://starwars-visualguide.com/assets/img/characters/" + itemId + ".jpg";
@@ -69,8 +57,9 @@ export class ItemDetailsComponent implements OnInit {
       default:
         break;
     }
+  }
 
-
+  ngOnInit() {
   }
 
   onPageArrival(){

@@ -7,6 +7,7 @@
       <li *ngFor="let item of items; let i = index" class="list-group-item" (click)="displayItem(item)">
         <Button class="btn category-item-btn">
           {{item?.name}}
+          {{item?.title}}
         </Button>
       </li>
     </ul>

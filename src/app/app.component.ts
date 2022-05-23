@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MetaObject, ItemObject, PeopleMeta, FilmMeta , SpeciesMeta, StarshipMeta, VehicleMeta, PlanetMeta} from './model'
+import { PeopleMeta, FilmMeta , SpeciesMeta, StarshipMeta, VehicleMeta, PlanetMeta} from './model'
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryItemsComponent } from './category-items/category-items.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
@@ -18,8 +18,8 @@ export class AppComponent {
   title = 'starwars';
 
   category = "";
-  items !: ItemObject[];
-  item !: ItemObject;
+  items !: any[];
+  item !: any;
 
 
   @ViewChild('categories')
@@ -115,6 +115,8 @@ export class AppComponent {
   // Goes back one page.
   pageBack(){
 
+    console.log("Page back has been activated! app page value is now:" + this.appPage)
+
     if(this.appPage == 2){
       this.categories.toggleState();
       this.categoryItems.toggleState();
@@ -126,7 +128,7 @@ export class AppComponent {
     }
 
     this.appPage--;
-    if(this.appPage <= 1){
+    if(this.appPage == 1){
       this.canBack = false;
     }
   }
