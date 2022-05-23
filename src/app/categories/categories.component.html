@@ -1,0 +1,13 @@
+<div id="categories" [ngClass]="{container: true, component: true, animated: true, float: !activeState, fadeOutLeft: !activeState, fadeInRight: activeState}">
+  <div class="component">
+    <h3>Categories</h3>
+    <ul class="list-group">
+      <li id="list-characters" class="list-group-item" (click)="displayItems('Characters')"><Button class="btn btn-default">Characters</Button></li>
+      <li id="list-films" class="list-group-item" (click)="displayItems('Films')"><Button class="btn btn-default">Films</Button></li>
+      <li id="list-species" class="list-group-item" (click)="displayItems('Species')"><Button class="btn btn-default">Species</Button></li>
+      <li id="list-starships" class="list-group-item" (click)="displayItems('Starships')"><Button class="btn btn-default">Starship</Button></li>
+      <li id="list-vehicles" class="list-group-item" (click)="displayItems('Vehicles')"><Button class="btn btn-default">Vehicles</Button></li>
+      <li id="list-planets" class="list-group-item" (click)="displayItems('Planets')"><Button class="btn btn-default">Planets</Button></li>
+    </ul>
+  </div>
+</div>

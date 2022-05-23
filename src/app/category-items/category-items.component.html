@@ -1,0 +1,14 @@
+<div #categoryItems [ngClass]="{container: true, animated: true, hidden: !activeState, float: !activeState, fadeOutLeft: !activeState, fadeInRight: activeState}">
+
+  <div>
+    <h3>{{category}}</h3>
+
+    <ul class="list-group">
+      <li *ngFor="let item of items; let i = index" class="list-group-item" (click)="displayItem(item)">
+        <Button class="btn category-item-btn">
+          {{item?.name}}
+        </Button>
+      </li>
+    </ul>
+  </div>
+</div>

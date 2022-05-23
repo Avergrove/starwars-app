@@ -1,0 +1,18 @@
+.item-key{
+    font-weight: bold;
+}
+
+.container{
+    margin-top: 2.5vh;
+    
+    border-width: 2.5px;
+    border-color: #2d2c33;
+    border-style: solid;
+
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
+}
+
+#item-detail-tweet-btn{
+    margin-top: 2.5vh;
+}
