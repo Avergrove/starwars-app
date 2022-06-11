@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
-import { Film, Item, People, Planet, Species, Starship, Vehicle } from '../model';
+import { Film, Item, People, Planet, Species, Starship, Vehicle } from '../models/model';
 
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.css']
 })
-export class ItemDetailsComponent implements OnInit, OnChanges {
+export class ItemDetailsComponent implements OnInit, OnChanges{
 
   @Input() item !: Item;
   @Input() currCategory !: string;

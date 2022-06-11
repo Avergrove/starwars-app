@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PeopleMeta, FilmMeta , SpeciesMeta, StarshipMeta, VehicleMeta, PlanetMeta, Category, Item} from './model'
+import { PeopleMeta, FilmMeta , SpeciesMeta, StarshipMeta, VehicleMeta, PlanetMeta, Category, Item} from './models/model'
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryItemsComponent } from './category-items/category-items.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { __makeTemplateObject } from 'tslib';
-import { SWAPIService } from './swapiservice.service';
+import { SWAPIService } from './services/swapiservice.service'
 
 @Component({
   selector: 'app-root',

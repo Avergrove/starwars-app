@@ -1,4 +1,3 @@
-
 export interface Category<T extends Item>{
     count: string;
     next: string;
