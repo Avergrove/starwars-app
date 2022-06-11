@@ -1,5 +1,8 @@
 # StarwarsApp
 
+The Starwars application is an Angular practice project that uses the Star Wars API (SWAPI) to display information about entities in the movie.
+
+===
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.6.
 
 ## Development server
