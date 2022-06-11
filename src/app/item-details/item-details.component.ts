@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
-import { Film, People, Planet, Species, Starship, Vehicle } from '../model';
+import { Film, Item, People, Planet, Species, Starship, Vehicle } from '../model';
 
 @Component({
   selector: 'app-item-details',
@@ -8,66 +8,58 @@ import { Film, People, Planet, Species, Starship, Vehicle } from '../model';
 })
 export class ItemDetailsComponent implements OnInit, OnChanges {
 
-  @Input() item !: any;
+  @Input() item !: Item;
+  @Input() currCategory !: string;
 
   imageUrl !: String;
   activeState = false;
-  debug !: string;
-
-  tweetText = encodeURI("https://avergrove.github.io/starwars-app/");
-
-  constructor() { }
-
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("changes: " + changes);
-    var itemId = this.item.url.match('^.*/([0-9]*)/$')![1]; 
-    console.log("The item id is: " + itemId);
-    switch (this.item.category) {
-      case 'people':
-        this.imageUrl = "https://starwars-visualguide.com/assets/img/characters/" + itemId + ".jpg";
-        this.tweetText = encodeURI(this.tweetText + "\n" + this.item.name + " is my favourite boi!");
-        break
 
-      case 'film':
-        this.imageUrl = "https://starwars-visualguide.com/assets/img/films/" + itemId + ".jpg";
-        this.tweetText = encodeURI(this.tweetText + "\n" + this.item.name + " is my favourite movie!");
-        break;
+    if (this.item !== undefined) {
+      var itemId = this.item.url.match('^.*/([0-9]*)/$')![1];
 
-      case 'species':
-        this.imageUrl = "https://starwars-visualguide.com/assets/img/species/" + itemId + ".jpg";
-        this.tweetText = encodeURI(this.tweetText + "\n" + "Me-sah likey" + this.item.name + "!");
-        break;
+      switch (this.currCategory) {
+        case 'people':
+          this.imageUrl = "https://starwars-visualguide.com/assets/img/characters/" + itemId + ".jpg";
+          break
 
-      case 'starship':
-        this.imageUrl = "https://starwars-visualguide.com/assets/img/starships/" + itemId + ".jpg";
-        this.tweetText = encodeURI(this.tweetText + "\n" + this.item.name + " is my favourite starsheep!");
-        break;
+        case 'film':
+          this.imageUrl = "https://starwars-visualguide.com/assets/img/films/" + itemId + ".jpg";
+          break;
 
-      case 'vehicle':
-        this.imageUrl = "https://starwars-visualguide.com/assets/img/vehicles/" + itemId + ".jpg";
-        this.tweetText = encodeURI(this.tweetText + "\n" + this.item.name + " is my favourite HOOOOOOOOOOO!");
-        break;
+        case 'species':
+          this.imageUrl = "https://starwars-visualguide.com/assets/img/species/" + itemId + ".jpg";
+          break;
 
-      case 'planet':
-        this.imageUrl = "https://starwars-visualguide.com/assets/img/planets/" + itemId + ".jpg";
-        this.tweetText = encodeURI(this.tweetText + "\n" + this.item.name + " is my favourite planet that totally didn't get obliterated!");
-        break;
+        case 'starship':
+          this.imageUrl = "https://starwars-visualguide.com/assets/img/starships/" + itemId + ".jpg";
+          break;
 
-      default:
-        break;
+        case 'vehicle':
+          this.imageUrl = "https://starwars-visualguide.com/assets/img/vehicles/" + itemId + ".jpg";
+          break;
+
+        case 'planet':
+          this.imageUrl = "https://starwars-visualguide.com/assets/img/planets/" + itemId + ".jpg";
+          break;
+
+        default:
+          break;
+      }
     }
   }
 
   ngOnInit() {
+
   }
 
-  onPageArrival(){
-    this.toggleState();
+  onPageArrival() {
+
   }
 
-  toggleState() {
-    this.activeState = !this.activeState;
+  setState(doEnable: boolean) {
+    this.activeState = doEnable;
   }
 
 }

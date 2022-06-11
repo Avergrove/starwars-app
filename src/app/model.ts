@@ -1,11 +1,46 @@
-export interface PeopleMeta {
+
+export interface Category<T extends Item>{
     count: string;
     next: string;
     previous: string;
-    results: People[];
+    category: string;
+
+    results: T[];
 }
 
-export interface People {
+export interface PeopleMeta extends Category<People>{
+    category: "people";
+}
+
+export interface FilmMeta extends Category<Film>{
+    category: "film";
+}
+
+export interface SpeciesMeta extends Category<Species>{
+    category: "species";
+}
+
+export interface StarshipMeta extends Category<Starship>{
+    category: "starships";
+}
+
+export interface VehicleMeta extends Category<Vehicle>{
+    category: "vehicle";
+}
+
+export interface PlanetMeta extends Category<Planet>{
+    category: "planet";
+}
+
+export interface Item{
+    category: string;
+
+    created: string[];
+    edited: string[];
+    url: string;
+}
+
+export interface People extends Item{
     category: "people";
     name: string;
     height: string;
@@ -15,28 +50,16 @@ export interface People {
     birth_year: string;
     gender: string;
 
-    homeworld: string; // Url
-    films: string[];   // Url
-    species: string[]; // Url
+    homeworld: string; 
+    films: string[];   
+    species: string[]; 
     vehicles: string[];
     starships: string[];
-
-    created: string[];
-    edited: string[];
-
-    url: string;
 }
 
 
 
-export interface FilmMeta {
-    count: string;
-    next: string;
-    previous: string;
-    results: Film[];
-}
-
-export interface Film {
+export interface Film extends Item{
     category: "film";
     
     title: string;
@@ -51,22 +74,9 @@ export interface Film {
     starships: string[];
     vehicles: string[];
     species: string[];
-    
-    created: string;
-    edited: string;
-    url: string;
 }
 
-
-
-export interface SpeciesMeta {
-    count: string;
-    next: string;
-    previous: string;
-    results: Species[];
-}
-
-export interface Species {
+export interface Species extends Item{
     category: "species";
     
     name: string;
@@ -82,20 +92,9 @@ export interface Species {
 
     people: string[];
     films: string[];
-
-    created: string;
-    edited: string;
-    url: string;
 }
 
-export interface StarshipMeta {
-    count: string;
-    next: string;
-    previous: string;
-    results: Starship[];
-}
-
-export interface Starship{
+export interface Starship extends Item{
     category: "starship";
     
     name: string;
@@ -114,20 +113,9 @@ export interface Starship{
     
     pilots: string[];
     films: string[];
-
-    created: string;
-    edited: string;
-    url: string;
 }
 
-export interface VehicleMeta {
-    count: string;
-    next: string;
-    previous: string;
-    results: Vehicle[];
-}
-
-export interface Vehicle{
+export interface Vehicle extends Item{
     category: "vehicle";
     
     name: string;
@@ -142,22 +130,11 @@ export interface Vehicle{
     consumables: string;
     vehicle_class: string;
 
-    
     pilots: string[];
     films: string[];
-    created: string;
-    edited: string;
-    url: string;
 }
 
-export interface PlanetMeta{
-    count: string;
-    next: string;
-    previous: string;
-    results: Planet[];
-}
-
-export interface Planet{
+export interface Planet extends Item{
     category: "planet";
     
     name: string;
@@ -171,7 +148,4 @@ export interface Planet{
     population: string;
     residents: string[];
     films: string[];
-    created: string;
-    edited: string;
-    url: string;
 }

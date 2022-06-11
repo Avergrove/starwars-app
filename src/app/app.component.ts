@@ -1,9 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PeopleMeta, FilmMeta , SpeciesMeta, StarshipMeta, VehicleMeta, PlanetMeta} from './model'
+import { PeopleMeta, FilmMeta , SpeciesMeta, StarshipMeta, VehicleMeta, PlanetMeta, Category, Item} from './model'
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryItemsComponent } from './category-items/category-items.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
+import { __makeTemplateObject } from 'tslib';
+import { SWAPIService } from './swapiservice.service';
 
 @Component({
   selector: 'app-root',
@@ -11,126 +13,84 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
   styleUrls: ['./app.component.css']
 })
 
-
-
-
 export class AppComponent {
   title = 'starwars';
 
-  category = "";
-  items !: any[];
-  item !: any;
+  loadedCategory !: Category<Item>;
+  categoryItems !: Category<Item>[];
+  selectedCategory : string = "";
+  selectedItem !: Item;
 
 
   @ViewChild('categories')
-  categories: CategoriesComponent = new CategoriesComponent;
+  categoriesComponent: CategoriesComponent = new CategoriesComponent;
+
   @ViewChild('categoryItems')
-  categoryItems: CategoryItemsComponent = new CategoryItemsComponent;
+  categoryItemsComponent: CategoryItemsComponent = new CategoryItemsComponent;
+
   @ViewChild('itemDetails')
-  itemDetails: ItemDetailsComponent = new ItemDetailsComponent;
+  itemDetailsComponent: ItemDetailsComponent = new ItemDetailsComponent;
+
   canBack = false;
-  appPage = 1;
+  private appPage = 0;
 
 
-  constructor(private http: HttpClient) { };
+  constructor(private http: HttpClient, private swapiService: SWAPIService) { };
 
-  loadCategory($event: string) {
-    this.category = $event;
-    this.items = [];
-
-    switch ($event) {
-      case "Characters":
-        this.http.get<PeopleMeta>('https://swapi.dev/api/people/').subscribe((data) => {
-          data.results.forEach((element, index) => {
-            element.category = "people";
-            this.items.push(element);
-          });
-        })
-        break;
-
-      case "Films":
-        this.http.get<FilmMeta>('https://swapi.dev/api/films/').subscribe((data) => {
-          data.results.forEach((element, index) => {
-            element.category = "film"
-            this.items.push(element);
-          });
-        })
-        break;
-
-
-      case "Species":
-        this.http.get<SpeciesMeta>('https://swapi.dev/api/species/').subscribe((data) => {
-          data.results.forEach((element, index) => {
-            element.category = "species"
-            this.items.push(element);
-          });
-        })
-        break;
-
-
-      case "Starships":
-        this.http.get<StarshipMeta>('https://swapi.dev/api/starships/').subscribe((data) => {
-          data.results.forEach((element, index) => {
-            element.category = "starship";
-            this.items.push(element);
-          });
-        })
-        break;
-
-
-      case "Vehicles":
-        this.http.get<VehicleMeta>('https://swapi.dev/api/vehicles/').subscribe((data) => {
-          data.results.forEach((element, index) => {
-            element.category = "vehicle";
-            this.items.push(element);
-          });
-        })
-        break;
-
-
-      case "Planets":
-        this.http.get<PlanetMeta>('https://swapi.dev/api/planets/').subscribe((data) => {
-          data.results.forEach((element, index) => {
-            element.category = "planet";
-            this.items.push(element);
-          });
-        })
-        break;
-
-      default:
-        break;
-    }
-
-    // Handle page metainfo
-    this.canBack = true;
-    this.appPage++;
-
+  onCategorySelectedEvent($event: any){
+    this.loadCategory($event);
+    this.incrementPage();
   }
 
-  loadItem($event: any){
-    this.item = $event;
-    this.appPage++;
+  OnCategoryItemSelectedEvent(itemSelected: Item){
+    this.loadItem(itemSelected);
+    this.incrementPage();
   }
 
-  // Goes back one page.
-  pageBack(){
+  private loadCategory($event: string) {
+    let category = $event;
 
-    console.log("Page back has been activated! app page value is now:" + this.appPage)
+    let apiPromise = this.swapiService.fetchFromAPI(category);
+    apiPromise.then((response) => {
+      this.loadedCategory = response;
+      this.selectedCategory = this.loadedCategory.category;
+    })
+  }
 
-    if(this.appPage == 2){
-      this.categories.toggleState();
-      this.categoryItems.toggleState();
-    }
+  loadItem(item: Item){
+    this.selectedItem = item;
+  }
 
-    else if(this.appPage == 3){
-      this.categoryItems.toggleState();
-      this.itemDetails.toggleState();
-    }
-
+  onPageBack(){
     this.appPage--;
-    if(this.appPage == 1){
+    this.refreshComponentStates();
+  }
+
+  incrementPage(){
+    this.appPage++;
+    this.refreshComponentStates();
+  }
+
+  refreshComponentStates(){
+    if(this.appPage === 0){
+      this.categoriesComponent.setState(true);
+      this.categoryItemsComponent.setState(false);
+      this.itemDetailsComponent.setState(false);
       this.canBack = false;
     }
-  }
 
+    else if(this.appPage === 1){
+      this.categoriesComponent.setState(false);
+      this.categoryItemsComponent.setState(true);
+      this.itemDetailsComponent.setState(false);
+      this.canBack = true;
+    }
+
+    else if(this.appPage === 2){
+      this.categoriesComponent.setState(false);
+      this.categoryItemsComponent.setState(false);
+      this.itemDetailsComponent.setState(true);
+      this.canBack = true;
+    }
+  }
 }

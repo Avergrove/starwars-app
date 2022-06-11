@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-categories',
@@ -7,23 +6,18 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   styleUrls: ['./categories.component.css'],
 })
 
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent{
 
-  @Output() categorySelect = new EventEmitter();
+  @Output() categorySelectedEvent = new EventEmitter();
   activeState = true;  
 
   constructor() { }
 
-  ngOnInit() {
+  onCategoryClick(arg: any) {
+    this.categorySelectedEvent.emit(arg);
   }
 
-  displayItems(arg: any) {
-    this.categorySelect.emit(arg);
-    this.toggleState();
+  public setState(doEnable : boolean){
+    this.activeState = doEnable;
   }
-
-  public toggleState(){
-    this.activeState = !this.activeState;
-  }
-
 }

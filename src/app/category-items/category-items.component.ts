@@ -1,30 +1,31 @@
-import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Category, Item } from '../model';
 
 @Component({
   selector: 'app-category-items',
   templateUrl: './category-items.component.html',
   styleUrls: ['./category-items.component.css']
 })
-export class CategoryItemsComponent implements OnInit {
+export class CategoryItemsComponent{
 
-  @Output() itemSelect = new EventEmitter();
-  @Input() category !: String;
-  @Input() items !: any[];
+  @Input()
+  category !: Category<Item>;
+  
+  @Output() 
+  onCategoryItemSelectedEvent = new EventEmitter<Item>();
 
   activeState = false;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  
   // Triggered on click
-  displayItem(item: any){
-    this.itemSelect.emit(item);
-    this.toggleState();
+  onCategoryItemClick(itemClicked : Item){
+      this.displayItem(itemClicked);
   }
 
-  toggleState(){
-    this.activeState = !this.activeState;
+  displayItem(item: Item){
+    this.onCategoryItemSelectedEvent.emit(item);
+  }
+
+  setState(doEnable : boolean){
+    this.activeState = doEnable;
   }
 }
