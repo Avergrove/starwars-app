@@ -35,27 +35,27 @@ export class ItemDetailsComponent implements OnInit, OnChanges{
       var itemId = this.item.url.match('^.*/([0-9]*)/$')![1];
 
       switch (this.currCategory) {
-        case 'people':
+        case this.categoryConstants.PEOPLE:
           this.imageUrl = "https://starwars-visualguide.com/assets/img/characters/" + itemId + ".jpg";
           break
 
-        case 'film':
+        case this.categoryConstants.FILMS:
           this.imageUrl = "https://starwars-visualguide.com/assets/img/films/" + itemId + ".jpg";
           break;
 
-        case 'species':
+        case this.categoryConstants.SPECIES:
           this.imageUrl = "https://starwars-visualguide.com/assets/img/species/" + itemId + ".jpg";
           break;
 
-        case 'starship':
+        case this.categoryConstants.STARSHIPS:
           this.imageUrl = "https://starwars-visualguide.com/assets/img/starships/" + itemId + ".jpg";
           break;
 
-        case 'vehicle':
+        case this.categoryConstants.VEHICLES:
           this.imageUrl = "https://starwars-visualguide.com/assets/img/vehicles/" + itemId + ".jpg";
           break;
 
-        case 'planet':
+        case this.categoryConstants.PLANETS:
           this.imageUrl = "https://starwars-visualguide.com/assets/img/planets/" + itemId + ".jpg";
           break;
 

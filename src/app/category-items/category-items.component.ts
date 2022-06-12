@@ -32,6 +32,8 @@ export class CategoryItemsComponent implements OnChanges{
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.displayCategory = CategoryConstants.mapCategoryToDisplayStrings(this.category.categoryType)
+    if(this.category !== undefined){
+      this.displayCategory = CategoryConstants.mapCategoryToDisplayStrings(this.category.categoryType)
+    }
   }
 }
