@@ -1,7 +1,7 @@
 <div #categoryItems [ngClass]="{container: true, animated: true, hidden: !activeState, float: !activeState, fadeOutLeft: !activeState, fadeInRight: activeState}">
 
   <div>
-    <h3>{{category?.category}}</h3>
+    <h3>{{displayCategory}}</h3>
 
     <ul class="list-group">
       <li *ngFor="let item of category?.results; let i = index" class="list-group-item" (click)="onCategoryItemClick(item)">

@@ -1,90 +1,88 @@
 <div #itemDetails [ngClass]="{container: true, animated: true, hidden: !activeState, float: !activeState, fadeOutLeft: !activeState, fadeInRight: activeState}">
-  <div *ngIf="currCategory == 'people'">
-    <h2>{{$any(item).name}}</h2>
+  <div *ngIf="currCategory === categoryConstants.PEOPLE">
+    <h2>{{displayPeople.name}}</h2>
     <div><img src="{{imageUrl}}" style="max-height: 30vh; max-width: 30vw"></div>
-    <div class="text-capitalize"><span class="item-key">Height:</span> {{$any(item).height}}</div>
-    <div class="text-capitalize"><span class="item-key">Mass:</span> {{$any(item).mass}}</div>
-    <div class="text-capitalize"><span class="item-key">Hair Color:</span> {{$any(item).hair_color}}</div>
-    <div class="text-capitalize"><span class="item-key">Birth year:</span> {{$any(item).birth_year}}</div>
-    <div class="text-capitalize"><span class="item-key">Gender:</span> {{$any(item).gender}}</div>
-    <div><span class="item-key">Home World:</span> {{$any(item).homeworld}}</div>
-
-    <div><span class="item-key">Notes</span></div>
+    <div class="text-capitalize"><span class="item-key">Height:</span> {{displayPeople.height}}</div>
+    <div class="text-capitalize"><span class="item-key">Mass:</span> {{displayPeople.mass}}</div>
+    <div class="text-capitalize"><span class="item-key">Hair Color:</span> {{displayPeople.hair_color}}</div>
+    <div class="text-capitalize"><span class="item-key">Birth year:</span> {{displayPeople.birth_year}}</div>
+    <div class="text-capitalize"><span class="item-key">Gender:</span> {{displayPeople.gender}}</div>
+    <div><span class="item-key">Home World:</span> {{displayPeople.homeworld}}</div>
   </div>
 
-  <div *ngIf="currCategory == 'film'">
-    <h2>{{$any(item).title}}</h2>
+  <div *ngIf="currCategory == categoryConstants.FILMS">
+    <h2>{{displayFilm.title}}</h2>
     <div><img src="{{imageUrl}}" style="max-height: 30vh; max-width: 30vw"></div>
-    <div class="text-capitalize"><span class="item-key">Episode ID:</span> {{$any(item).episode_id}}</div>
-    <div class="text-capitalize"><span class="item-key">Opening Crawl:</span> {{$any(item).opening_crawl}}</div>
-    <div class="text-capitalize"><span class="item-key">Director:</span> {{$any(item).director}}</div>
-    <div class="text-capitalize"><span class="item-key">Producer:</span> {{$any(item).producer}}</div>
-    <div class="text-capitalize"><span class="item-key">Release date:</span> {{$any(item).release_date}}</div>
+    <div class="text-capitalize"><span class="item-key">Episode ID:</span> {{displayFilm.episode_id}}</div>
+    <div class="text-capitalize"><span class="item-key">Opening Crawl:</span> {{displayFilm.opening_crawl}}</div>
+    <div class="text-capitalize"><span class="item-key">Director:</span> {{displayFilm.director}}</div>
+    <div class="text-capitalize"><span class="item-key">Producer:</span> {{displayFilm.producer}}</div>
+    <div class="text-capitalize"><span class="item-key">Release date:</span> {{displayFilm.release_date}}</div>
 
 
-  </div>
-
-
-  <div *ngIf="currCategory == 'species'">
-    <h2>{{$any(item).name}}</h2>
-    <div><img src="{{imageUrl}}" style="max-height: 30vh; max-width: 30vw"></div>
-    <div class="text-capitalize"><span class="item-key">Classification:</span> {{$any(item).classification}}</div>
-    <div class="text-capitalize"><span class="item-key">Designation:</span> {{$any(item).designation}}</div>
-    <div class="text-capitalize"><span class="item-key">Average Height:</span> {{$any(item).average_height}}</div>
-    <div class="text-capitalize"><span class="item-key">Skin Colors:</span> {{$any(item).skin_colors}}</div>
-    <div class="text-capitalize"><span class="item-key">Hair Colors:</span> {{$any(item).hair_colors}}</div>
-    <div class="text-capitalize"><span class="item-key">Eye Colors:</span> {{$any(item).eye_colors}}</div>
-    <div class="text-capitalize"><span class="item-key">Average Lifespan:</span> {{$any(item).average_lifespan}}</div>
-    <div class="text-capitalize"><span class="item-key">Homeworld:</span> {{$any(item).homeworld}}</div>
-    <div class="text-capitalize"><span class="item-key">Language:</span> {{$any(item).language}}</div>
   </div>
 
 
-  <div *ngIf="currCategory == 'starship'">
-    <h2>{{$any(item).name}}</h2>
+  <div *ngIf="currCategory == categoryConstants.SPECIES">
+    <h2>{{displaySpecies.name}}</h2>
     <div><img src="{{imageUrl}}" style="max-height: 30vh; max-width: 30vw"></div>
-    <div class="text-capitalize"><span class="item-key">Name:</span> {{$any(item).name}}</div>
-    <div class="text-capitalize"><span class="item-key">Model:</span> {{$any(item).model}}</div>
-    <div class="text-capitalize"><span class="item-key">Manufacturer:</span> {{$any(item).manufacturer}}</div>
-    <div class="text-capitalize"><span class="item-key">Cost in Credit:</span> {{$any(item).cost_in_credit}}</div>
-    <div class="text-capitalize"><span class="item-key">Length:</span> {{$any(item).length}}</div>
-    <div class="text-capitalize"><span class="item-key">Max Atmosphering Speed:</span> {{$any(item).max_atmosphering_speed}}</div>
-    <div class="text-capitalize"><span class="item-key">Crew:</span> {{$any(item).crew}}</div>
-    <div class="text-capitalize"><span class="item-key">Passengers:</span> {{$any(item).passengers}}</div>
-    <div class="text-capitalize"><span class="item-key">Cargo Capacity:</span> {{$any(item).cargo_capacity}}</div>
-    <div class="text-capitalize"><span class="item-key">Consumables:</span> {{$any(item).consumables}}</div>
-    <div class="text-capitalize"><span class="item-key">Hyperdrive Rating:</span> {{$any(item).hyperdrive_rating}}</div>
-    <div class="text-capitalize"><span class="item-key">MGLT:</span> {{$any(item).mglt}}</div>
-    <div class="text-capitalize"><span class="item-key">Starship Class:</span> {{$any(item).starship_class}}</div>
+    <div class="text-capitalize"><span class="item-key">Classification:</span> {{displaySpecies.classification}}</div>
+    <div class="text-capitalize"><span class="item-key">Designation:</span> {{displaySpecies.designation}}</div>
+    <div class="text-capitalize"><span class="item-key">Average Height:</span> {{displaySpecies.average_height}}</div>
+    <div class="text-capitalize"><span class="item-key">Skin Colors:</span> {{displaySpecies.skin_colors}}</div>
+    <div class="text-capitalize"><span class="item-key">Hair Colors:</span> {{displaySpecies.hair_colors}}</div>
+    <div class="text-capitalize"><span class="item-key">Eye Colors:</span> {{displaySpecies.eye_colors}}</div>
+    <div class="text-capitalize"><span class="item-key">Average Lifespan:</span> {{displaySpecies.average_lifespan}}</div>
+    <div class="text-capitalize"><span class="item-key">Homeworld:</span> {{displaySpecies.homeworld}}</div>
+    <div class="text-capitalize"><span class="item-key">Language:</span> {{displaySpecies.language}}</div>
   </div>
 
 
-  <div *ngIf="currCategory == 'vehicle'">
-    <h2>{{$any(item).name}}</h2>
+  <div *ngIf="currCategory == categoryConstants.STARSHIPS">
+    <h2>{{displayStarship.name}}</h2>
     <div><img src="{{imageUrl}}" style="max-height: 30vh; max-width: 30vw"></div>
-    <div><span class="item-key">Model:</span> {{$any(item).model}}</div>
-    <div><span class="item-key">Manufacturer:</span> {{$any(item).manufacturer}}</div>
-    <div><span class="item-key">Cost in Credit:</span> {{$any(item).cost_in_credit}}</div>
-    <div><span class="item-key">Length:</span> {{$any(item).length}}</div>
-    <div><span class="item-key">Max Atmosphering Speed:</span> {{$any(item).max_atmosphering_speed}}</div>
-    <div><span class="item-key">Crew:</span> {{$any(item).crew}}</div>
-    <div><span class="item-key">Passengers:</span> {{$any(item).passengers}}</div>
-    <div><span class="item-key">Cargo Capacity:</span> {{$any(item).cargo_capacity}}</div>
-    <div><span class="item-key">Consumables:</span> {{$any(item).consumables}}</div>
-    <div><span class="item-key">Vehicle Class:</span> {{$any(item).vehicle_class}}</div>
+    <div class="text-capitalize"><span class="item-key">Name:</span> {{displayStarship.name}}</div>
+    <div class="text-capitalize"><span class="item-key">Model:</span> {{displayStarship.model}}</div>
+    <div class="text-capitalize"><span class="item-key">Manufacturer:</span> {{displayStarship.manufacturer}}</div>
+    <div class="text-capitalize"><span class="item-key">Cost in Credit:</span> {{displayStarship.cost_in_credits}}</div>
+    <div class="text-capitalize"><span class="item-key">Length:</span> {{displayStarship.length}}</div>
+    <div class="text-capitalize"><span class="item-key">Max Atmosphering Speed:</span> {{displayStarship.max_atmosphering_speed}}</div>
+    <div class="text-capitalize"><span class="item-key">Crew:</span> {{displayStarship.crew}}</div>
+    <div class="text-capitalize"><span class="item-key">Passengers:</span> {{displayStarship.passengers}}</div>
+    <div class="text-capitalize"><span class="item-key">Cargo Capacity:</span> {{displayStarship.cargo_capacity}}</div>
+    <div class="text-capitalize"><span class="item-key">Consumables:</span> {{displayStarship.consumables}}</div>
+    <div class="text-capitalize"><span class="item-key">Hyperdrive Rating:</span> {{displayStarship.hyperdrive_rating}}</div>
+    <div class="text-capitalize"><span class="item-key">MGLT:</span> {{displayStarship.MGLT}}</div>
+    <div class="text-capitalize"><span class="item-key">Starship Class:</span> {{displayStarship.starship_class}}</div>
   </div>
 
 
-  <div *ngIf="currCategory == 'planet'">
-    <h2>{{$any(item).name}}</h2>
+  <div *ngIf="currCategory == categoryConstants.VEHICLES">
+    <h2>{{displayVehicle.name}}</h2>
     <div><img src="{{imageUrl}}" style="max-height: 30vh; max-width: 30vw"></div>
-    <div><span class="item-key">Rotation Period:</span> {{$any(item).rotation_period}}</div>
-    <div><span class="item-key">Orbital Period:</span> {{$any(item).orbital_period}}</div>
-    <div><span class="item-key">Diameter:</span> {{$any(item).diameter}}</div>
-    <div><span class="item-key">Climate:</span> {{$any(item).climate}}</div>
-    <div><span class="item-key">Gravity:</span> {{$any(item).gravity}}</div>
-    <div><span class="item-key">Terrain:</span> {{$any(item).terrain}}</div>
-    <div><span class="item-key">Surface Water:</span> {{$any(item).surface_water}}</div>
-    <div><span class="item-key">Population:</span> {{$any(item).population}}</div>
+    <div><span class="item-key">Model:</span> {{displayVehicle.model}}</div>
+    <div><span class="item-key">Manufacturer:</span> {{displayVehicle.manufacturer}}</div>
+    <div><span class="item-key">Cost in Credit:</span> {{displayVehicle.cost_in_credits}}</div>
+    <div><span class="item-key">Length:</span> {{displayVehicle.length}}</div>
+    <div><span class="item-key">Max Atmosphering Speed:</span> {{displayVehicle.max_atmosphering_speed}}</div>
+    <div><span class="item-key">Crew:</span> {{displayVehicle.crew}}</div>
+    <div><span class="item-key">Passengers:</span> {{displayVehicle.passengers}}</div>
+    <div><span class="item-key">Cargo Capacity:</span> {{displayVehicle.cargo_capacity}}</div>
+    <div><span class="item-key">Consumables:</span> {{displayVehicle.consumables}}</div>
+    <div><span class="item-key">Vehicle Class:</span> {{displayVehicle.vehicle_class}}</div>
+  </div>
+
+
+  <div *ngIf="currCategory == categoryConstants.PLANETS">
+    <h2>{{displayPlanet.name}}</h2>
+    <div><img src="{{imageUrl}}" style="max-height: 30vh; max-width: 30vw"></div>
+    <div><span class="item-key">Rotation Period:</span> {{displayPlanet.rotation_period}}</div>
+    <div><span class="item-key">Orbital Period:</span> {{displayPlanet.orbital_period}}</div>
+    <div><span class="item-key">Diameter:</span> {{displayPlanet.diameter}}</div>
+    <div><span class="item-key">Climate:</span> {{displayPlanet.climate}}</div>
+    <div><span class="item-key">Gravity:</span> {{displayPlanet.gravity}}</div>
+    <div><span class="item-key">Terrain:</span> {{displayPlanet.terrain}}</div>
+    <div><span class="item-key">Surface Water:</span> {{displayPlanet.surface_water}}</div>
+    <div><span class="item-key">Population:</span> {{displayPlanet.population}}</div>
   </div>
 </div>

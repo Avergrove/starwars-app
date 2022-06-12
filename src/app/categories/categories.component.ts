@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
+import {Category} from '../common/categoryConstants'
 
 @Component({
   selector: 'app-categories',
@@ -9,11 +10,13 @@ import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 export class CategoriesComponent{
 
   @Output() categorySelectedEvent = new EventEmitter();
+  
   activeState = true;  
+  CategoryConstant = Category;
 
   constructor() { }
-
-  onCategoryClick(arg: any) {
+  
+  onCategoryClick(arg: Category) {
     this.categorySelectedEvent.emit(arg);
   }
 

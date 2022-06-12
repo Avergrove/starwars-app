@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PeopleMeta, FilmMeta , SpeciesMeta, StarshipMeta, VehicleMeta, PlanetMeta, Category, Item} from './models/model'
+import { Category, Item} from './models/model'
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryItemsComponent } from './category-items/category-items.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { __makeTemplateObject } from 'tslib';
 import { SWAPIService } from './services/swapiservice.service'
+import * as CategoryConstants from './common/categoryConstants'
 
 @Component({
   selector: 'app-root',
@@ -37,7 +38,7 @@ export class AppComponent {
 
   constructor(private http: HttpClient, private swapiService: SWAPIService) { };
 
-  onCategorySelectedEvent($event: any){
+  onCategorySelectedEvent($event: CategoryConstants.Category){
     this.loadCategory($event);
     this.incrementPage();
   }
@@ -47,13 +48,13 @@ export class AppComponent {
     this.incrementPage();
   }
 
-  private loadCategory($event: string) {
+  private loadCategory($event: CategoryConstants.Category) {
     let category = $event;
 
     let apiPromise = this.swapiService.fetchFromAPI(category);
     apiPromise.then((response) => {
       this.loadedCategory = response;
-      this.selectedCategory = this.loadedCategory.category;
+      this.selectedCategory = this.loadedCategory.categoryType;
     })
   }
 

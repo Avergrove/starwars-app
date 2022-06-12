@@ -1,34 +1,13 @@
+
+import * as CategoryConstants from '../common/categoryConstants'
+
 export interface Category<T extends Item>{
     count: string;
     next: string;
     previous: string;
-    category: string;
+    categoryType: CategoryConstants.Category;
 
     results: T[];
-}
-
-export interface PeopleMeta extends Category<People>{
-    category: "people";
-}
-
-export interface FilmMeta extends Category<Film>{
-    category: "film";
-}
-
-export interface SpeciesMeta extends Category<Species>{
-    category: "species";
-}
-
-export interface StarshipMeta extends Category<Starship>{
-    category: "starships";
-}
-
-export interface VehicleMeta extends Category<Vehicle>{
-    category: "vehicle";
-}
-
-export interface PlanetMeta extends Category<Planet>{
-    category: "planet";
 }
 
 export interface Item{

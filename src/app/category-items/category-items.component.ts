@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Category, Item } from '../models/model';
+import * as CategoryConstants from '../common/categoryConstants'
 
 @Component({
   selector: 'app-category-items',
   templateUrl: './category-items.component.html',
   styleUrls: ['./category-items.component.css']
 })
-export class CategoryItemsComponent{
+export class CategoryItemsComponent implements OnChanges{
 
   @Input()
   category !: Category<Item>;
@@ -14,6 +15,7 @@ export class CategoryItemsComponent{
   @Output() 
   onCategoryItemSelectedEvent = new EventEmitter<Item>();
 
+  displayCategory : string = "";
   activeState = false;
   
   // Triggered on click
@@ -27,5 +29,9 @@ export class CategoryItemsComponent{
 
   setState(doEnable : boolean){
     this.activeState = doEnable;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.displayCategory = CategoryConstants.mapCategoryToDisplayStrings(this.category.categoryType)
   }
 }
